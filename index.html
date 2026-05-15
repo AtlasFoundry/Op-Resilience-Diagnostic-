@@ -596,6 +596,98 @@
       margin-top: 12px;
     }
 
+    .stage-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: baseline;
+      padding: 11px 14px;
+      margin: 0 0 22px;
+      background: rgba(0, 158, 154, 0.07);
+      border: 1px solid rgba(0, 158, 154, 0.22);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+    }
+    .stage-meta .step-mark {
+      font-weight: 850;
+      color: var(--brand-dark);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    .stage-meta .step-sum { color: var(--muted); }
+
+    .lens {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .lens-cell {
+      padding: 14px 15px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .lens-cell.can { border-color: rgba(0, 158, 154, 0.32); background: rgba(0, 158, 154, 0.05); }
+    .lens-cell .lens-label {
+      display: block;
+      font-weight: 850;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+    }
+    .lens-cell.cant .lens-label { color: var(--slate); }
+    .lens-cell p { margin: 0; color: var(--charcoal); font-size: 0.95rem; }
+
+    .reason-list { display: grid; gap: 10px; margin: 12px 0 6px; }
+    .reason-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--white);
+    }
+    .reason-row .why { color: var(--charcoal); font-weight: 700; }
+    .reason-row .who {
+      color: var(--brand-dark);
+      font-weight: 850;
+      font-size: 0.88rem;
+      background: var(--alice);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .reason-row .who.held { background: transparent; border: 1px dashed var(--slate); color: var(--slate); }
+
+    .walkaway {
+      margin-top: 22px;
+      padding: 20px 22px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 158, 154, 0.10), rgba(0, 158, 154, 0.02));
+      border: 1px solid rgba(0, 158, 154, 0.28);
+    }
+    .walkaway h3 { color: var(--brand-dark); margin-bottom: 6px; }
+    .walkaway .wk-sub { color: var(--charcoal); margin: 0 0 14px; }
+    .wk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .wk-item {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px 14px;
+    }
+    .wk-item strong { display: block; color: var(--brand-dark); margin-bottom: 4px; }
+    .wk-item span { color: var(--charcoal); font-size: 0.94rem; }
+
+    @media (max-width: 720px) {
+      .lens, .wk-grid { grid-template-columns: 1fr; }
+    }
+
     footer {
       padding: 26px 0 46px;
       color: var(--muted);
@@ -709,6 +801,12 @@
         </div>
         <span class="tag">Before intake</span>
       </div>
+
+      <div class="stage-meta" aria-label="Journey context">
+        <span class="step-mark">Stage 0 of 5</span>
+        <span class="step-sum">Nothing carried forward yet — the member journey starts here.</span>
+      </div>
+
       <div class="grid-2">
         <div class="plain-card">
           <span class="eyebrow"><span class="dot"></span> Webinar hook</span>
@@ -719,13 +817,25 @@
           </div>
         </div>
         <div class="plain-card">
-          <h3>Anonymised local examples</h3>
+          <h3>What an outsider can often see</h3>
           <div class="record-list">
-            <div class="record-row"><span>Example A</span><span>Old staff profile still public</span></div>
-            <div class="record-row"><span>Example B</span><span>Supplier login route unclear</span></div>
-            <div class="record-row"><span>Example C</span><span>Contact details inconsistent</span></div>
+            <div class="record-row"><span>Forgotten subdomains</span><span>Pointing to legacy hosting</span></div>
+            <div class="record-row"><span>Employee emails</span><span>Appearing in past breach datasets</span></div>
+            <div class="record-row"><span>Admin login pages</span><span>Indexed publicly by search engines</span></div>
+            <div class="record-row"><span>Former contractors</span><span>Still listed as website administrators</span></div>
           </div>
           <p class="note">Members are invited to volunteer for a SafeSpy snapshot if they want a simple first look at their public footprint.</p>
+        </div>
+      </div>
+
+      <div class="lens" aria-label="What this view can and cannot tell you">
+        <div class="lens-cell can">
+          <span class="lens-label">What this view can tell you</span>
+          <p>Where your business is visible to anyone with a browser — the surfaces a stranger would notice first.</p>
+        </div>
+        <div class="lens-cell cant">
+          <span class="lens-label">What it cannot tell you</span>
+          <p>Whether your internal systems are secure, whether staff access is appropriate, or whether contracts and processes hold up.</p>
         </div>
       </div>
     </section>
@@ -738,6 +848,12 @@
         </div>
         <span class="tag">No real data collection</span>
       </div>
+
+      <div class="stage-meta" aria-label="Journey context">
+        <span class="step-mark">Stage 1 of 5</span>
+        <span class="step-sum">Carried from Stage 0 — the member wants to see what is visible externally before sharing more.</span>
+      </div>
+
       <form onsubmit="event.preventDefault(); showToast('Demo only: no information has been submitted.');">
         <div class="form-grid">
           <div>
@@ -802,6 +918,12 @@
         </div>
         <span class="tag">First visible view</span>
       </div>
+
+      <div class="stage-meta" aria-label="Journey context">
+        <span class="step-mark">Stage 2 of 5</span>
+        <span class="step-sum">Carried so far — Northstar Creative Ltd, 2–10 people, interested in cyber exposure and people readiness.</span>
+      </div>
+
       <div class="grid-2">
         <div class="insight-list">
           <div class="insight"><div class="icon">👀</div><div><h3>What is visible</h3><p>Sample public records show a live website, standard contact routes, several third-party services, and a few older staff profile references.</p></div></div>
@@ -809,11 +931,20 @@
           <div class="insight"><div class="icon">🛠️</div><div><h3>What the member can do now</h3><p>Confirm who manages the domain, review administrator access, and update profile pages that no longer reflect the team.</p></div></div>
         </div>
         <div class="plain-card">
-          <h3>What this snapshot cannot conclude</h3>
-          <p>It cannot confirm whether systems are secure, whether contracts are suitable, or whether internal processes are working well. It only shows a narrow external view.</p>
-          <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;" />
           <h3>Recommended next step</h3>
           <p>Use the 1-1 routing conversation to decide whether the member needs a cyber follow-up, people readiness review, or a broader resilience route.</p>
+          <p class="note">The next conversation is human-led. The snapshot is a prompt, not a verdict.</p>
+        </div>
+      </div>
+
+      <div class="lens" aria-label="What this view can and cannot tell you">
+        <div class="lens-cell can">
+          <span class="lens-label">What this view can tell you</span>
+          <p>Where your public footprint is active or inconsistent, and which external surfaces are worth a closer look.</p>
+        </div>
+        <div class="lens-cell cant">
+          <span class="lens-label">What it cannot tell you</span>
+          <p>Whether systems are secure, contracts are suitable, internal access is appropriate, or live vulnerabilities exist behind the surface.</p>
         </div>
       </div>
     </section>
@@ -826,6 +957,12 @@
         </div>
         <span class="tag">Handled by FinTech-Tables</span>
       </div>
+
+      <div class="stage-meta" aria-label="Journey context">
+        <span class="step-mark">Stage 3 of 5</span>
+        <span class="step-sum">Carried so far — an external snapshot showing three areas to review, plus the member's stated pressure points.</span>
+      </div>
+
       <div class="grid-2">
         <div class="plain-card">
           <h3>Member pressure points</h3>
@@ -840,10 +977,26 @@
         </div>
         <div class="route-panel">
           <h3>Recommended next diagnostic route</h3>
-          <p>Start with SafeSpy and SolasOS pages, then add Vialex if the member wants contract confidence before their next client renewal.</p>
+          <p class="note" style="margin-top:0;">Each route below is chosen for a reason the member can see. Partners follow the need; they are not pre-selected.</p>
+          <div class="reason-list">
+            <div class="reason-row"><span class="why">External exposure check — what others see</span><span class="who">SafeSpy</span></div>
+            <div class="reason-row"><span class="why">People readiness — hiring confidence before next two roles</span><span class="who">SolasOS</span></div>
+            <div class="reason-row"><span class="why">Contract confidence — clarity before next client renewal</span><span class="who held">Vialex · held for member</span></div>
+          </div>
           <div class="callout" style="margin-top:18px;">
             <strong>Routing note:</strong> FinTech-Tables records the reasoning, checks consent, and invites the right partners to contribute pages. The tool supports the conversation; it does not choose for the member.
           </div>
+        </div>
+      </div>
+
+      <div class="lens" aria-label="What this view can and cannot tell you">
+        <div class="lens-cell can">
+          <span class="lens-label">What this view can tell you</span>
+          <p>Why each partner is being suggested, in plain language tied to the member's actual situation.</p>
+        </div>
+        <div class="lens-cell cant">
+          <span class="lens-label">What it cannot tell you</span>
+          <p>Whether the partner's eventual page will close the issue — that is judged after the page lands and is discussed.</p>
         </div>
       </div>
     </section>
@@ -1021,6 +1174,18 @@
           <div class="plain-card"><h3>Where you are</h3><p>You have completed intake and agreed a focused route with FinTech-Tables.</p></div>
           <div class="plain-card"><h3>What you have completed</h3><p>Initial public-view snapshot, pressure point discussion, and consent for selected partner input.</p></div>
           <div class="plain-card"><h3>What we recommend next</h3><p>Complete the SolasOS people readiness page and book a practical surgery session.</p></div>
+        </div>
+
+        <div class="walkaway" aria-label="What the member walks away with after one month">
+          <span class="eyebrow"><span class="dot"></span> Your resilience picture — one month in</span>
+          <h3 style="margin-top:14px;">What you walk away with</h3>
+          <p class="wk-sub">Not a score. A practical view of where you are, what you have moved on, and what to say next time a client asks.</p>
+          <div class="wk-grid">
+            <div class="wk-item"><strong>A focused priority list</strong><span>Three or four things to act on first — not a long list of problems.</span></div>
+            <div class="wk-item"><strong>Partner conversations booked</strong><span>The right specialists already engaged, with the reasoning recorded.</span></div>
+            <div class="wk-item"><strong>Actions you have already taken</strong><span>Visible changes you can point to — admin access tightened, contractor list updated, contract clauses reviewed.</span></div>
+            <div class="wk-item"><strong>A simple way to show progress</strong><span>A one-page Passport you can share with clients, lenders, or insurers when they ask.</span></div>
+          </div>
         </div>
       </div>
     </section>
